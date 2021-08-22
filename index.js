@@ -1,14 +1,6 @@
 const fs =require('fs');
 const inquirer = require('inquirer');
-const generateTable = (file)=>{
-   const {installation, usage, license, contributing,test} = file;
-
-   console.log(installation)
-   console.log(usage)
-
-    
-    console.log("generate table accessed")
-}
+const generateLicense = require ('./utils/generateMarkdown');
 
 // TODO: Include packages needed for this application
 
@@ -40,13 +32,17 @@ const writeToFile = file=>{
    ${file.usage}
 
    ## License
-   ${file.license}
+   ${generateLicense(file.license)}
 
    ## Contributing
    ${file.contributing}
 
    ## Tests
    ${file.test}
+
+   ## Questions
+   For more questions please email to : ${file.email}
+   Github Link: https://github.com/${github}
    `
 };
 
@@ -121,10 +117,11 @@ const init = () =>{
               }
         },
         {
-            type: 'checkbox',
+            type: 'list',
             name: 'license',
-            message: 'Please select the license used on this project? (Check all that apply)',
-            choices: ['Babel', '.net Core', 'Rails', 'Bash', 'GIMP']
+            message: 'Please select the license used on this project?',
+            choices: ['MIT', 'GNU APLv3', 'Mozilla Public', 'UnLicense', 'No license'],
+            default: 'MIT'
         },
         {
             type:'input',
@@ -135,6 +132,30 @@ const init = () =>{
             type:'input',
             name:'test',
             message:'How do you  Test or Run your application?'
+        },
+        {
+            type:'input',
+            name:'github',
+            message:'Please input github username (Required)',
+            validate: githubInput=>{
+                if (githubInput){
+                    return true;
+                }else{
+                    console.log('Please enter github user.')
+                }
+            }
+        },
+        {
+            type:'input',
+            name:'email',
+            message:'Please input your email (Required)',
+            validate: emailInput=>{
+                if (emailInput){
+                    return true;
+                }else{
+                    console.log('Please enter your email address.')
+                }
+            }
         }
     ])
     // .then(answers =>console.log(answers));

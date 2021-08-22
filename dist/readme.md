@@ -21,11 +21,18 @@
    d
 
    ## License
-   Babel
+   
+  
+  ![GNUBadge](https://img.shields.io/badge/license-Mozilla%20P-green)
+  
+  
+   Mozilla Public License Link: https://spdx.org/licenses/MPL-2.0.html
+   
+  
 
    ## Contributing
    a
 
    ## Tests
-   b
+   a
    
