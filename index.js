@@ -42,7 +42,7 @@ const writeToFile = file=>{
 
    ## Questions
    For more questions please email to : ${file.email}
-   Github Link: https://github.com/${github}
+   Github Link: https://github.com/${file.github}
    `
 };
 
